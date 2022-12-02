@@ -1,4 +1,4 @@
-name: .NET 6 + Pack + Push no NuGet
+name: .NET 7 + Pack + Push no NuGet
 
 on:
   push:
@@ -15,10 +15,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET 6
+    - name: Setup .NET 7
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100
+        dotnet-version: 7.0.100
 
     - name: Geração do package
       run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -o out

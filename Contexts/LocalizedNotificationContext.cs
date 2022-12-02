@@ -5,9 +5,9 @@ namespace Notify;
 public class LocalizedNotificationContext : ILocalizedNotificationContext
 {
     private readonly INotificationContext _context;
-    private readonly IStringLocalizer _localizer;
+    private readonly IStringLocalizer<LocalizedNotificationContext> _localizer;
 
-    public LocalizedNotificationContext(INotificationContext context, IStringLocalizer localizer)
+    public LocalizedNotificationContext(INotificationContext context, IStringLocalizer<LocalizedNotificationContext> localizer)
     {
         _context = context;
         _localizer = localizer;
