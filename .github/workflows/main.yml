@@ -1,4 +1,4 @@
-name: .NET 7 + Pack + Push no NuGet
+name: .NET 10 + Pack + Publish to NuGet
 
 on:
   push:
@@ -8,22 +8,45 @@ on:
 
 jobs:
   pack-push:
+    environment: production
+
+    permissions:
+      id-token: write
+
     env:
-      CAMINHO_PROJETO: ./Notify.csproj
+      CAMINHO_PROJETO: ./src/Notify/Notify.csproj
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET 7
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 7.0.100
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Geração do package
-      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -o out
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
 
-    - name: Push no NuGet
-      run: |
-        cd out
-        dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
+      - name: Restore
+        run: dotnet restore Notify.sln
+
+      - name: Test
+        run: dotnet test Notify.sln --configuration Release --no-restore
+
+      - name: Geração do package
+        run: dotnet pack ${{ env.CAMINHO_PROJETO }} --configuration Release --no-restore --output out
+
+      - name: NuGet login
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push no NuGet
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          dotnet nuget push "out/*.nupkg" \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate

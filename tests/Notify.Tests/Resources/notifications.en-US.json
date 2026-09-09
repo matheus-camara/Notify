@@ -1,0 +1,6 @@
+{
+  "GREETING": "Hello.",
+  "RESULTS_FOUND": "Less than {0} results found.",
+  "NUMBER": "Number: {0:N1}",
+  "MULTIPLE": "{0} has {1} pets."
+}
