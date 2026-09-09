@@ -1,8 +1,8 @@
-using Notify.Contexts;
-using Notify.Contracts;
-using Notify.Entities;
+using Notifiable.Contexts;
+using Notifiable.Contracts;
+using Notifiable.Entities;
 
-namespace Notify.Tests.Contexts;
+namespace Notifiable.Tests.Contexts;
 
 public class NotificationContextTests
 {

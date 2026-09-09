@@ -1,6 +1,6 @@
-using Notify.Entities;
+using Notifiable.Entities;
 
-namespace Notify.Tests.Entities;
+namespace Notifiable.Tests.Entities;
 
 public class NotificationTests
 {

@@ -1,6 +1,6 @@
-using Notify.Entities;
+using Notifiable.Entities;
 
-namespace Notify.Contracts;
+namespace Notifiable.Contracts;
 
 public interface INotificationContext
 {

@@ -1,7 +1,7 @@
-using Notify.Contracts;
-using Notify.Entities;
+using Notifiable.Contracts;
+using Notifiable.Entities;
 
-namespace Notify.Contexts;
+namespace Notifiable.Contexts;
 
 public sealed class NotificationContext : INotificationContext
 {

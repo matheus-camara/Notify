@@ -1,7 +1,7 @@
 using System.Globalization;
-using Notify.Localization;
+using Notifiable.Localization;
 
-namespace Notify.Tests.Localization;
+namespace Notifiable.Tests.Localization;
 
 public class JsonNotificationLocalizerTests
 {
@@ -12,12 +12,12 @@ public class JsonNotificationLocalizerTests
             .Assembly
             .GetManifestResourceNames();
 
-        Assert.Contains("Notify.Tests.Resources.notifications.en-US.json", resources);
-        Assert.Contains("Notify.Tests.Resources.notifications.pt-BR.json", resources);
-        Assert.Contains("Notify.Tests.Resources.notifications.pt.json", resources);
+        Assert.Contains("Notifiable.Tests.Resources.notifications.en-US.json", resources);
+        Assert.Contains("Notifiable.Tests.Resources.notifications.pt-BR.json", resources);
+        Assert.Contains("Notifiable.Tests.Resources.notifications.pt.json", resources);
     }
 
-    private const string ResourcePrefix = "Notify.Tests.Resources";
+    private const string ResourcePrefix = "Notifiable.Tests.Resources";
     private readonly JsonNotificationLocalizer _localizer =
         new(typeof(JsonNotificationLocalizerTests).Assembly, ResourcePrefix, "en-US");
 

@@ -1,4 +1,4 @@
-namespace Notify.Entities;
+namespace Notifiable.Entities;
 
 public sealed record Notification(
     string Key,

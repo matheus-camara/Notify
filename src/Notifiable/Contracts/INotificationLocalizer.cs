@@ -1,4 +1,4 @@
-namespace Notify.Contracts;
+namespace Notifiable.Contracts;
 
 public interface INotificationLocalizer
 {

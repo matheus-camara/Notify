@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Notify\Notify.csproj" />
+    <ProjectReference Include="..\..\src\Notifiable\Notifiable.csproj" />
   </ItemGroup>
   <ItemGroup>
       <EmbeddedResource Include="Resources/notifications.*.json"
-                    LogicalName="Notify.Tests.Resources.%(Filename)%(Extension)"
+                    LogicalName="Notifiable.Tests.Resources.%(Filename)%(Extension)"
                     WithCulture="false" />
   </ItemGroup>
 </Project>

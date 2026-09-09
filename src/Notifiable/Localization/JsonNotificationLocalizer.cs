@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Reflection;
 using System.Text.Json;
-using Notify.Contracts;
+using Notifiable.Contracts;
 
-namespace Notify.Localization;
+namespace Notifiable.Localization;
 
 public sealed class JsonNotificationLocalizer : INotificationLocalizer
 {
@@ -58,8 +58,6 @@ public sealed class JsonNotificationLocalizer : INotificationLocalizer
             return cached;
 
         var resourceName = $"{_resourcePrefix}.notifications.{culture}.json";
-
-        var filenames = _assembly.GetManifestResourceNames();
 
         using var stream = _assembly.GetManifestResourceStream(resourceName);
 
