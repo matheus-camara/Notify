@@ -1,7 +1,8 @@
+using Notifiable.Contracts;
+using System.Collections.Concurrent;
 using System.Globalization;
 using System.Reflection;
 using System.Text.Json;
-using Notifiable.Contracts;
 
 namespace Notifiable.Localization;
 
@@ -10,7 +11,7 @@ public sealed class JsonNotificationLocalizer : INotificationLocalizer
     private readonly Assembly _assembly;
     private readonly string _resourcePrefix;
     private readonly string _defaultCulture;
-    private readonly Dictionary<string, IReadOnlyDictionary<string, string>> _cache = [];
+    private readonly ConcurrentDictionary<string, IReadOnlyDictionary<string, string>> _cache = [];
 
     public JsonNotificationLocalizer(
         Assembly assembly,
@@ -63,7 +64,7 @@ public sealed class JsonNotificationLocalizer : INotificationLocalizer
 
         if (stream is null)
         {
-            _cache[culture] = new Dictionary<string, string>();
+            _cache[culture] = new Dictionary<string, string>().AsReadOnly();
             return _cache[culture];
         }
 
@@ -71,8 +72,8 @@ public sealed class JsonNotificationLocalizer : INotificationLocalizer
         var json = reader.ReadToEnd();
 
         var resources =
-            JsonSerializer.Deserialize<Dictionary<string, string>>(json)
-            ?? new Dictionary<string, string>();
+            JsonSerializer.Deserialize<Dictionary<string, string>>(json)?.AsReadOnly()
+            ?? new Dictionary<string, string>().AsReadOnly();
 
         _cache[culture] = resources;
         return resources;

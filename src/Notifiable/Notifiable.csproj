@@ -5,12 +5,16 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>Notifiable</PackageId>
     <Authors>Matheus Câmara</Authors>
-    <Description>Lightweight notification pattern for .NET applications with optional JSON localization.</Description>
+    <Description>Lightweight notification pattern for .NET applications with optional JSON
+      localization.</Description>
     <PackageTags>notifications;validation;localization;dotnet</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/matheus-camara/Notifiable</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>Notifiable</PackageId>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 </Project>
